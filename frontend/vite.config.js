@@ -7,7 +7,6 @@ export default defineConfig({
   server: {
     port: 5002,
     proxy: {
-      // Проксируем запросы к API
       '/api': {
         target: 'http://localhost:5001',
       },
