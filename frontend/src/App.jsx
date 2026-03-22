@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage'
 import ChatPage from './pages/ChatPage'
 import PageNotFound from './pages/PageNotFound'
 import PrivateRoute from './components/PrivateRoute'
+import PublicRoute from './components/PublicRoute'
 
 function App() {
 
@@ -14,7 +15,11 @@ function App() {
             <ChatPage />
           </PrivateRoute>
         } />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        } />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

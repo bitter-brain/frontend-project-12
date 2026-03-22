@@ -2,12 +2,15 @@ import { Formik, Field, Form } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import loginImage from '../assets/login.jpg'
-
+import { useLoginUserMutation } from '../api/authApi'
+import { loginSuccess } from '../slices/authSlice'
+import { useDispatch } from 'react-redux'
 
 const LoginPage = () => {
 
+  const dispatch = useDispatch()
+  const [loginUser] = useLoginUserMutation()
   const navigate = useNavigate()
-
   const [authError, setAuthError] = useState(false)
 
   return (
@@ -29,35 +32,18 @@ const LoginPage = () => {
                     username: '',
                     password: '',
                   }}
-                  onSubmit={ async (values) => {
-                      try {
-                        const response = await fetch('/api/v1/login', {
-                          method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify(values),
-                        })
-
-                        if (response.status === 401) {
-                          setAuthError(true)
-                          return
-                        }
-
-                        if (!response.ok) {
-                          throw new Error(`HTTP error! status: ${response.status}`)
-                        }
-
-                        const { token } = await response.json()
-                        localStorage.setItem('auth_token', token)
-
-                        navigate('/')
-
-                      } catch (error) {
-                        console.error('Error:', error)
+                  onSubmit={async (values) => {
+                    setAuthError(false)
+                    try {
+                      const { token, username } = await loginUser(values).unwrap()
+                      dispatch(loginSuccess({token, username}))
+                      navigate('/')
+                    } catch (error) {
+                      if (error.status === 401) {
+                        setAuthError(true)
                       }
                     }
-                  }
+                  }}
                 >
                   {({ isSubmitting, handleChange }) => (
                     <Form className="col-12 col-md-6 mt-3 mt-md-0">
