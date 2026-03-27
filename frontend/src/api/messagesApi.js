@@ -15,6 +15,7 @@ export const messagesApi = createApi({
   endpoints: builder => ({
     getMessages: builder.query({
       query: () => '/messages',
+      providesTags: ['Messages'],
     }),
     addMessage: builder.mutation({
       query: data => ({

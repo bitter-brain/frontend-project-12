@@ -1,6 +1,13 @@
 import { Dropdown, ButtonGroup, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { openModal } from '../slices/modalSlice'
 
 const Channel = ({ id, name, removable, isActive, onClick }) => {
+
+  const dispatch = useDispatch()
+
+  const openRemoveChannelModal = () => dispatch(openModal({ type: 'removeChannel', channelId: id }))
+  const openRenameChannelModal = () => dispatch(openModal({ type: 'renameChannel', channelId: id }))
 
   if (removable) {
     return (
@@ -8,19 +15,19 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
         <Dropdown as={ButtonGroup} className="w-100">
           <Button
             variant={isActive ? 'secondary' : ''}
-            className="w-100 rounded-0 text-start"
+            className="w-100 rounded-0 text-start overflow-hidden"
             onClick={() => onClick(id)}
           >
-            <span className="me-1">#</span>{name}
+            <span className="text-truncate d-inline-block w-100"># {name}</span>
           </Button>
           <Dropdown.Toggle
             split
             variant={isActive ? 'secondary' : ''}
-            className="rounded-0"
+            className="rounded-0 flex-shrink-0"
           />
           <Dropdown.Menu>
-            <Dropdown.Item>Удалить</Dropdown.Item>
-            <Dropdown.Item>Переименовать</Dropdown.Item>
+            <Dropdown.Item onClick={openRemoveChannelModal}>Удалить</Dropdown.Item>
+            <Dropdown.Item onClick={openRenameChannelModal}>Переименовать</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </li>
@@ -31,10 +38,10 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
     <li className="nav-item w-100">
       <Button
         variant={isActive ? 'secondary' : ''}
-        className="w-100 rounded-0 text-start"
+        className="w-100 rounded-0 text-start overflow-hidden"
         onClick={() => onClick(id)}
       >
-        <span className="me-1">#</span>{name}
+        <span className="text-truncate d-inline-block w-100"># {name}</span>
       </Button>
     </li>
   )

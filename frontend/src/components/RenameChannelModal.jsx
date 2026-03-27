@@ -1,0 +1,80 @@
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeModal } from '../slices/modalSlice'
+import { useRenameChannelMutation, useGetChannelsQuery } from '../api/channelsApi'
+import {Field, Form, Formik} from 'formik'
+import channelValidationSchema from '../utils/channelValidationSchema'
+
+const RenameChannelModal = () => {
+
+  const {type, channelId } = useSelector((state) => state.modal)
+  const dispatch = useDispatch()
+  const handleClose = () => dispatch(closeModal())
+  const [renameChannel, { error, isLoading }] = useRenameChannelMutation()
+  const { data: channels } = useGetChannelsQuery()
+
+  return (
+    <>
+      <Modal
+        show={type === 'renameChannel'}
+        onHide={handleClose}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Переименовать канал</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Formik
+            initialValues={{ channelName: '' }}
+            validationSchema={channelValidationSchema(channels ?? [])}
+            validateOnBlur={false}
+            validateOnChange={false}
+            onSubmit={async (values) => {
+              try {
+                await renameChannel({ id: channelId, name: values.channelName }).unwrap()
+                handleClose()
+              } catch (error) {
+                console.error(error)
+              }
+            }}
+          >
+            {({ errors, isSubmitting, resetForm }) => (
+              <Form>
+                <Field
+                  name="channelName"
+                  className="form-control mb-2"
+                  autoFocus={true}
+                />
+                {errors.channelName && (
+                  <div className="text-danger">{errors.channelName}</div>
+                )}
+                <div className="d-flex justify-content-end gap-2 mt-3">
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={() => {
+                      resetForm()
+                      handleClose()
+                    }}
+                  >
+                    Отменить
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={isSubmitting}
+                  >
+                    {isLoading ? 'Отправка…' : 'Отправить'}
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Modal.Body>
+      </Modal>
+    </>
+  )
+}
+
+export default RenameChannelModal
