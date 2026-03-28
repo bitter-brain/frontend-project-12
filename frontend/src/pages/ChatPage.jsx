@@ -10,9 +10,11 @@ import AddChannelModal from '../components/AddChannelModal'
 import socket from '../socket'
 import DeleteChannelModal from '../components/RemoveChannelModal'
 import RenameChannelModal from '../components/RenameChannelModal'
-
+import { useTranslation } from 'react-i18next'
 
 const ChatPage = () => {
+
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const activeChannelId = useSelector((state) => state.channels.activeChannel)
   const messages = useSelector((state) => state.messages)
@@ -74,8 +76,8 @@ const ChatPage = () => {
   }, [])
 
 
-  if (isLoading || isLoadingMessages) return <div>Загрузка...</div>
-  if (error || errorMessages) return <div>Ошибка загрузки</div>
+  if (isLoading || isLoadingMessages) return <div>{t('loading')}</div>
+  if (error || errorMessages) return <div>{t('networkError')}</div>
 
   const activeChannel = fetchedChannels?.find((channel) => channel.id === activeChannelId) ?? fetchedChannels?.[0]
 

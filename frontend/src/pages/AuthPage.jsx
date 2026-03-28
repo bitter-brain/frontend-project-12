@@ -6,9 +6,11 @@ import { loginSuccess } from '../slices/authSlice'
 import { useSignupUserMutation } from '../api/authApi'
 import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
+import { useTranslation } from 'react-i18next'
 
 const AuthPage = () => {
 
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [signupUser, { error, isLoading }] = useSignupUserMutation()
   const navigate = useNavigate()
@@ -16,15 +18,15 @@ const AuthPage = () => {
 
   const signupSchema = Yup.object().shape({
     username: Yup.string()
-      .min(3, 'От 3 до 20 символов')
-      .max(20, 'От 3 до 20 символов')
-      .required('Обязательное поле'),
+      .min(3, t('signupPage.errors.min3max20'))
+      .max(20, t('signupPage.errors.min3max20'))
+      .required(t('signupPage.errors.required')),
     password: Yup.string()
-      .min(6, 'Не менее 6 символов')
-      .required('Обязательное поле'),
+      .min(6, t('signupPage.errors.minPass'))
+      .required(t('signupPage.errors.required')),
     passwordConfirm: Yup.string()
-      .required('Пароли должны совпадать')
-      .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать')
+      .required(t('signupPage.errors.passMatch'))
+      .oneOf([Yup.ref('password'), null], t('signupPage.errors.passMatch')),
   })
 
   return (
@@ -37,7 +39,7 @@ const AuthPage = () => {
                 <img
                   src={authImage}
                   className="rounded-circle"
-                  alt="Signup"
+                  alt={t('signupPage.title')}
                   loading="eager"
                 />
               </div>
@@ -45,8 +47,8 @@ const AuthPage = () => {
                 initialValues={{
                   username: '',
                   password: '',
-                  passwordConfirm: '',
-                }}
+                  passwordConfirm: ''
+              }}
                 validationSchema={signupSchema}
                 onSubmit={async (values) => {
                   setSignupError(false)
@@ -61,40 +63,38 @@ const AuthPage = () => {
                   }
                 }}
               >
-                {({ isSubmitting, errors, touched, isValid  }) => (
+                {({ isSubmitting, errors, touched, isValid }) => (
                   <Form autoComplete="off" className="col-12 col-md-6 mt-3 mt-md-0">
-                    <h1 className="text-center mb-4">Регистрация</h1>
+                    <h1 className="text-center mb-4">{t('signupPage.title')}</h1>
                     <div className="form-floating mb-3">
                       <Field
                         id="username"
                         name="username"
                         autoComplete="username"
-                        placeholder="Имя пользователя"
-                        className={`form-control ${errors.username && touched.username || signupError ? 'is-invalid' : ''}`}
-                        autoFocus={true}
+                        placeholder={t('signupPage.username')}
+                        className={`form-control ${(errors.username && touched.username) || signupError ? 'is-invalid' : ''}`}
+                        autoFocus
                         required
                       />
                       {errors.username && (
                         <div className="invalid-tooltip">{errors.username}</div>
                       )}
-                      <label
-                        htmlFor="username"
-                        className="form-label"
-                      >Имя пользователя
+                      <label htmlFor="username" className="form-label">
+                        {t('signupPage.username')}
                       </label>
                     </div>
                     <div className="form-floating mb-3">
                       <Field
                         id="password"
                         name="password"
-                        placeholder="Пароль"
+                        placeholder={t('signupPage.password')}
                         type="password"
                         autoComplete="new-password"
-                        className={`form-control ${errors.password && touched.password || signupError ? 'is-invalid' : ''}`}
+                        className={`form-control ${(errors.password && touched.password) || signupError ? 'is-invalid' : ''}`}
                         required
                       />
                       <label htmlFor="password" className="form-label">
-                        Пароль
+                        {t('signupPage.password')}
                       </label>
                       {errors.password && (
                         <div className="invalid-tooltip">{errors.password}</div>
@@ -104,27 +104,27 @@ const AuthPage = () => {
                       <Field
                         id="passwordConfirm"
                         name="passwordConfirm"
-                        placeholder="Повторите пароль"
+                        placeholder={t('signupPage.passwordConfirm')}
                         type="password"
-                        className={`form-control ${errors.passwordConfirm && touched.passwordConfirm || signupError ? 'is-invalid' : ''}`}
+                        className={`form-control ${(errors.passwordConfirm && touched.passwordConfirm) || signupError ? 'is-invalid' : ''}`}
                         required
                       />
                       <label htmlFor="passwordConfirm" className="form-label">
-                        Подтвердите пароль
+                        {t('signupPage.passwordConfirm')}
                       </label>
                       {errors.passwordConfirm && (
                         <div className="invalid-tooltip">{errors.passwordConfirm}</div>
                       )}
                     </div>
                     {signupError && (
-                      <div className="text-danger mb-2">Такой пользователь уже существует</div>
+                      <div className="text-danger mb-2">{t('signupPage.errors.userExists')}</div>
                     )}
                     <button
                       type="submit"
                       className="w-100 mb-3 btn btn-outline-primary"
                       disabled={isSubmitting || !isValid}
                     >
-                      Зарегистрироваться
+                      {t('signupPage.submit')}
                     </button>
                   </Form>
                 )}

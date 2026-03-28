@@ -4,9 +4,11 @@ import Navbar from 'react-bootstrap/Navbar'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../slices/authSlice'
 import {useNavigate} from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const NavbarChat = () => {
 
+  const { t } = useTranslation()
   const isLogged = useSelector((state) => state.auth.loggedIn)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -20,7 +22,9 @@ const NavbarChat = () => {
       <Container>
         <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
           {isLogged &&
-            <Button onClick={handleLogout} variant="primary">Выйти</Button>
+            <Button onClick={handleLogout} variant="primary">
+              {t('logoutBtn')}
+            </Button>
           }
       </Container>
     </Navbar>

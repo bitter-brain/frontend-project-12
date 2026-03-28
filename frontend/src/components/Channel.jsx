@@ -1,11 +1,12 @@
 import { Dropdown, ButtonGroup, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../slices/modalSlice'
+import { useTranslation } from 'react-i18next'
 
 const Channel = ({ id, name, removable, isActive, onClick }) => {
 
+  const { t } = useTranslation()
   const dispatch = useDispatch()
-
   const openRemoveChannelModal = () => dispatch(openModal({ type: 'removeChannel', channelId: id }))
   const openRenameChannelModal = () => dispatch(openModal({ type: 'renameChannel', channelId: id }))
 
@@ -26,8 +27,12 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
             className="rounded-0 flex-shrink-0"
           />
           <Dropdown.Menu>
-            <Dropdown.Item onClick={openRemoveChannelModal}>Удалить</Dropdown.Item>
-            <Dropdown.Item onClick={openRenameChannelModal}>Переименовать</Dropdown.Item>
+            <Dropdown.Item onClick={openRemoveChannelModal}>
+              {t('manageChannel.delete')}
+            </Dropdown.Item>
+            <Dropdown.Item onClick={openRenameChannelModal}>
+              {t('manageChannel.rename')}
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </li>

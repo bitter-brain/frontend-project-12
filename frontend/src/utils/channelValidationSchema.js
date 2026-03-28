@@ -1,11 +1,11 @@
 import * as Yup from 'yup'
 
-const channelValidationSchema = (channels) => Yup.object().shape({
+const channelValidationSchema = (channels, t) => Yup.object().shape({
   channelName: Yup.string()
-    .min(3, 'От 3 до 20 символов')
-    .max(20, 'От 3 до 20 символов')
-    .required('Обязательоне поле')
-    .notOneOf(channels.map((c) => c.name), 'Канал уже существует')
+    .min(3, t('modals.validation.min'))
+    .max(20, t('modals.validation.max'))
+    .required(t('modals.validation.required'))
+    .notOneOf(channels.map((c) => c.name), t('modals.validation.channelExists'))
 })
 
 export default channelValidationSchema

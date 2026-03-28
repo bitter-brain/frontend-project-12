@@ -1,0 +1,67 @@
+{
+  "title": "Hexlet Chat",
+  "networkError": "Ошибка соединения",
+  "channelsTitle": "Каналы",
+  "logoutBtn": "Выйти",
+  "loading": "Загрузка...",
+  "messages_one": "{{count}} сообщение",
+  "messages_few": "{{count}} сообщения",
+  "messages_many": "{{count}} сообщений",
+  "messages_other": "{{count}} сообщений",
+  "messagePlaceholder": "Введите сообщение...",
+  "messageBtnText": "Отправить",
+  "notFound": {
+    "title": "Страница не найдена",
+    "text": "Но вы можете перейти",
+    "link": "на главную страницу"
+  },
+  "modals": {
+    "titles": {
+      "addChannel": "Добавить канал",
+      "deleteChannel": "Удалить канал",
+      "renameChannel": "Переименовать канал"
+    },
+    "channelName": "Имя канала",
+    "buttons": {
+      "cancel": "Отменить",
+      "submit": "Отправить",
+      "submitting": "Отправка...",
+      "delete": "Удалить",
+      "deleting": "Удаление..."
+    },
+    "deleteQuestion": "Уверены, что хотите удалить канал?",
+    "validation": {
+      "required": "Обязательное поле",
+      "min": "От 3 до 20 символов",
+      "max": "От 3 до 20 символов",
+      "channelExists": "Должно быть уникальным"
+    }
+  },
+  "loginPage": {
+    "title": "Войти",
+    "username": "Ваш ник",
+    "password": "Пароль",
+    "submit": "Войти",
+    "noAccount": "Нет аккаунта?",
+    "signup": "Регистрация",
+    "error": "Неверные имя пользователя или пароль"
+  },
+  "signupPage": {
+    "title": "Регистрация",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "passwordConfirm": "Подтвердите пароль",
+    "submit": "Зарегистрироваться",
+    "errors": {
+      "userExists": "Такой пользователь уже существует",
+      "required": "Обязательное поле",
+      "min3max20": "От 3 до 20 символов",
+      "minPass": "Не менее 6 символов",
+      "passMatch": "Пароли должны совпадать"
+    }
+  },
+  "manageChannel": {
+    "delete": "Удалить",
+    "rename": "Переименовать"
+  }
+}

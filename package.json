@@ -21,6 +21,7 @@
     "postinstall": "cd frontend && npm ci"
   },
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.4"
+    "@hexlet/chat-server": "^2.0.4",
+    "i18next-browser-languagedetector": "^8.2.1"
   }
 }
