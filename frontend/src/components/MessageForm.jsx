@@ -3,8 +3,10 @@ import { useState } from 'react'
 import { useAddMessageMutation } from '../api/messagesApi'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { toast} from 'react-toastify'
 
 const MessageForm = ({ activeChannelId }) => {
+
   const { t } = useTranslation()
   const [addMessage] = useAddMessageMutation()
   const username = useSelector((state) => state.auth.username)
@@ -23,7 +25,7 @@ const MessageForm = ({ activeChannelId }) => {
           }).unwrap()
           resetForm()
         } catch (error) {
-          setSendError(true)
+          toast.error(t('networkError'))
         }
       }}
     >

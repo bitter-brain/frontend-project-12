@@ -5,6 +5,7 @@ import { closeModal } from '../slices/modalSlice'
 import { setActiveChannel } from '../slices/channelsSlice'
 import { useRemoveChannelMutation, useGetChannelsQuery } from '../api/channelsApi'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 const RemoveChannelModal = () => {
   const { t } = useTranslation()
@@ -12,7 +13,7 @@ const RemoveChannelModal = () => {
   const activeChannelId = useSelector((state) => state.channels.activeChannel)
   const { data: fetchedChannels } = useGetChannelsQuery()
   const dispatch = useDispatch()
-  const [removeChannel, { error, isLoading }] = useRemoveChannelMutation()
+  const [removeChannel, { isLoading }] = useRemoveChannelMutation()
 
   const handleClose = () => dispatch(closeModal())
   const handleRemoveChannel = async () => {
@@ -22,7 +23,9 @@ const RemoveChannelModal = () => {
         dispatch(setActiveChannel(fetchedChannels[0].id))
       }
       handleClose()
+      toast.success(t('channel.deleted'))
     } catch (error) {
+      toast.error(t('networkError'))
       console.error(error)
     }
   }

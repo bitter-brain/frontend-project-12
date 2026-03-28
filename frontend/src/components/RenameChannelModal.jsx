@@ -6,13 +6,14 @@ import { useRenameChannelMutation, useGetChannelsQuery } from '../api/channelsAp
 import { Field, Form, Formik } from 'formik'
 import channelValidationSchema from '../utils/channelValidationSchema'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 const RenameChannelModal = () => {
   const { t } = useTranslation()
   const { type, channelId } = useSelector((state) => state.modal)
   const dispatch = useDispatch()
   const handleClose = () => dispatch(closeModal())
-  const [renameChannel, { error, isLoading }] = useRenameChannelMutation()
+  const [renameChannel, { isLoading }] = useRenameChannelMutation()
   const { data: channels } = useGetChannelsQuery()
 
   return (
@@ -34,7 +35,9 @@ const RenameChannelModal = () => {
             try {
               await renameChannel({ id: channelId, name: values.channelName }).unwrap()
               handleClose()
+              toast.success(t('channel.renamed'))
             } catch (error) {
+              toast.error(t('networkError'))
               console.error(error)
             }
           }}

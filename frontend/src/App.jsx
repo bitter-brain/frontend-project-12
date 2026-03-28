@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute'
 import PublicRoute from './components/PublicRoute'
 import AuthPage from './pages/AuthPage'
 import NavbarChat from './components/NavbarChat'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           } />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <ToastContainer />
       </div>
     </BrowserRouter>
   )

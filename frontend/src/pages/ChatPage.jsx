@@ -11,7 +11,8 @@ import socket from '../socket'
 import DeleteChannelModal from '../components/RemoveChannelModal'
 import RenameChannelModal from '../components/RenameChannelModal'
 import { useTranslation } from 'react-i18next'
-
+import { toast } from 'react-toastify'
+import SpinnerLoading from '../components/SpinnerLoading'
 const ChatPage = () => {
 
   const { t } = useTranslation()
@@ -75,9 +76,15 @@ const ChatPage = () => {
     return () => socket.off('removeChannel')
   }, [])
 
+  useEffect(() => {
+    if (error || errorMessages) {
+      toast.error(t('networkError'))
+    }
+  }, [error, errorMessages])
 
-  if (isLoading || isLoadingMessages) return <div>{t('loading')}</div>
-  if (error || errorMessages) return <div>{t('networkError')}</div>
+  if (isLoading || isLoadingMessages) return <SpinnerLoading />
+
+  if (error || errorMessages) return null
 
   const activeChannel = fetchedChannels?.find((channel) => channel.id === activeChannelId) ?? fetchedChannels?.[0]
 
