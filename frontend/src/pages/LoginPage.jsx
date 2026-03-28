@@ -57,6 +57,7 @@ const LoginPage = () => {
                           placeholder="Ваш ник"
                           className={`form-control ${authError ? 'is-invalid' : ''}`}
                           required
+                          autoFocus={true}
                           onChange={(e) => {
                             setAuthError(false)
                             handleChange(e)

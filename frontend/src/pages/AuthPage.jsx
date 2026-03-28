@@ -71,6 +71,7 @@ const AuthPage = () => {
                         autoComplete="username"
                         placeholder="Имя пользователя"
                         className={`form-control ${errors.username && touched.username || signupError ? 'is-invalid' : ''}`}
+                        autoFocus={true}
                         required
                       />
                       {errors.username && (
