@@ -5,7 +5,8 @@ import loginImage from '../assets/login.jpg'
 import { useLoginUserMutation } from '../api/authApi'
 import { loginSuccess } from '../slices/authSlice'
 import { useDispatch } from 'react-redux'
-
+import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
 const LoginPage = () => {
 
   const dispatch = useDispatch()
@@ -95,6 +96,12 @@ const LoginPage = () => {
                   )}
                 </Formik>
               </div>
+              <Card.Footer className="p-4">
+                <div className="text-center">
+                  <span>Нет аккаунта? </span>
+                  <Link to="/signup">Регистрация</Link>
+                </div>
+              </Card.Footer>
             </div>
           </div>
         </div>

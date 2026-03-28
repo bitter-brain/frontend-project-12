@@ -6,9 +6,9 @@ import App from './App.jsx'
 import store from './store'
 
 createRoot(document.getElementById('app')).render(
-  //<StrictMode>
+  <StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  //</StrictMode>,
+  </StrictMode>,
 )
