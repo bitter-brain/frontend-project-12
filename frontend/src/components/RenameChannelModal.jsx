@@ -45,6 +45,7 @@ const RenameChannelModal = () => {
           {({ errors, isSubmitting, resetForm }) => (
             <Form>
               <Field
+                id="channelName"
                 name="channelName"
                 className="form-control mb-2"
                 autoFocus
