@@ -7,6 +7,7 @@ import PublicRoute from './components/PublicRoute'
 import AuthPage from './pages/AuthPage'
 import NavbarChat from './components/NavbarChat'
 import { ToastContainer } from 'react-toastify'
+import TestRollbar from './components/RollbarTest'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="d-flex flex-column h-100">
         <NavbarChat />
+        <TestRollbar />
         <Routes>
           <Route path="/" element={
             <PrivateRoute>

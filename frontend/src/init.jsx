@@ -5,8 +5,6 @@ import App from './App'
 import resources from './locales/index.js'
 import store from './store'
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react'
-import TestRollbar from './components/RollbarTest'
-
 
 const rollbarConfig = {
   accessToken: import.meta.env.VITE_ROLLBAR_ACCESS_TOKEN,
@@ -34,7 +32,6 @@ const init = async () => {
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
             <App />
-            {import.meta.env.DEV && <TestRollbar />}
           </I18nextProvider>
         </Provider>
       </ErrorBoundary>

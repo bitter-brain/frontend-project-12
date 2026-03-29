@@ -6,10 +6,11 @@ function TestRollbar() {
 
   return (
     <div>
-      <button onClick={() => rollbar.info('Test message from React')}>
+      <button className="btn btn-primary" onClick={() => rollbar.info('Test message from React')}>
         Send Test Message
       </button>
       <button
+        className="btn btn-primary"
         onClick={() => {
           throw new Error('Test error from React ErrorBoundary');
         }}
