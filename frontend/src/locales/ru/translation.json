@@ -8,7 +8,8 @@
   "messages_few": "{{count}} сообщения",
   "messages_many": "{{count}} сообщений",
   "messages_other": "{{count}} сообщений",
-  "messagePlaceholder": "Введите сообщение...",
+  "messagePlaceholder": "Новое сообщение",
+  "messageInputPlaceholder": "Введите сообщение...",
   "messageBtnText": "Отправить",
   "channel": {
     "added": "Канал добавлен",

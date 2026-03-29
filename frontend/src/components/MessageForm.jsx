@@ -35,7 +35,7 @@ const MessageForm = ({ activeChannelId }) => {
             <Field
               name="body"
               aria-label={t('messagePlaceholder')}
-              placeholder={t('messagePlaceholder')}
+              placeholder={t('messageInputPlaceholder')}
               className={`border-0 p-0 ps-2 form-control ${sendError ? 'is-invalid' : ''}`}
             />
             {sendError && (
