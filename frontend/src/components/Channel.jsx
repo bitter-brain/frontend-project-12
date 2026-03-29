@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import leoProfanity from 'leo-profanity'
 
 const Channel = ({ id, name, removable, isActive, onClick }) => {
-
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const openRemoveChannelModal = () => dispatch(openModal({ type: 'removeChannel', channelId: id }))
@@ -20,7 +19,9 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
             className="w-100 rounded-0 text-start overflow-hidden"
             onClick={() => onClick(id)}
           >
-            <span className="text-truncate d-inline-block w-100"># {leoProfanity.clean(name)}</span>
+            <span className="text-truncate d-inline-block w-100">
+              # {leoProfanity.clean(name)}
+            </span>
           </Button>
           <Dropdown.Toggle
             split
@@ -49,7 +50,9 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
         className="w-100 rounded-0 text-start overflow-hidden"
         onClick={() => onClick(id)}
       >
-        <span className="text-truncate d-inline-block w-100"># {leoProfanity.clean(name)}</span>
+        <span className="text-truncate d-inline-block w-100">
+          # {leoProfanity.clean(name)}
+        </span>
       </Button>
     </li>
   )

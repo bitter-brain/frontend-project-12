@@ -10,7 +10,8 @@ const Message = (props) => {
   return (
     <>
       <div className="text-break mb-2">
-        <b>{username}</b>{`: ${leoProfanity.clean(body)}`}
+        <b>{username}</b>
+        {`: ${leoProfanity.clean(body)}`}
       </div>
     </>
   )

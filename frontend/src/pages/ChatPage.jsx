@@ -14,14 +14,12 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import SpinnerLoading from '../components/SpinnerLoading'
 const ChatPage = () => {
-
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const activeChannelId = useSelector((state) => state.channels.activeChannel)
-  const messages = useSelector((state) => state.messages)
+  const activeChannelId = useSelector(state => state.channels.activeChannel)
+  const messages = useSelector(state => state.messages)
   const { data: fetchedChannels, isLoading, error } = useGetChannelsQuery()
   const { data: fetchedMessages, isLoading: isLoadingMessages, error: errorMessages } = useGetMessagesQuery()
-
 
   useEffect(() => {
     if (fetchedChannels && !activeChannelId) {
@@ -47,7 +45,7 @@ const ChatPage = () => {
       dispatch(
         channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
           draft.push(payload)
-        })
+        }),
       )
     })
     return () => socket.off('newChannel')
@@ -57,9 +55,9 @@ const ChatPage = () => {
     socket.on('renameChannel', (payload) => {
       dispatch(
         channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
-          const channel = draft.find((c) => c.id === payload.id)
+          const channel = draft.find(c => c.id === payload.id)
           if (channel) channel.name = payload.name
-        })
+        }),
       )
     })
     return () => socket.off('renameChannel')
@@ -69,8 +67,8 @@ const ChatPage = () => {
     socket.on('removeChannel', (payload) => {
       dispatch(
         channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
-          return draft.filter((c) => c.id !== payload.id)
-        })
+          return draft.filter(c => c.id !== payload.id)
+        }),
       )
     })
     return () => socket.off('removeChannel')
@@ -86,7 +84,7 @@ const ChatPage = () => {
 
   if (error || errorMessages) return null
 
-  const activeChannel = fetchedChannels?.find((channel) => channel.id === activeChannelId) ?? fetchedChannels?.[0]
+  const activeChannel = fetchedChannels?.find(channel => channel.id === activeChannelId) ?? fetchedChannels?.[0]
 
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
@@ -94,7 +92,7 @@ const ChatPage = () => {
         <ChannelsList
           channels={fetchedChannels}
           activeChannelId={activeChannelId}
-          onChannelClick={(id) => dispatch(setActiveChannel(id))}
+          onChannelClick={id => dispatch(setActiveChannel(id))}
         />
         <MessagesPanel
           activeChannel={activeChannel}

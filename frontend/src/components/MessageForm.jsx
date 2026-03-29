@@ -3,13 +3,12 @@ import { useState } from 'react'
 import { useAddMessageMutation } from '../api/messagesApi'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const MessageForm = ({ activeChannelId }) => {
-
   const { t } = useTranslation()
   const [addMessage] = useAddMessageMutation()
-  const username = useSelector((state) => state.auth.username)
+  const username = useSelector(state => state.auth.username)
   const [sendError, setSendError] = useState(false)
 
   return (
@@ -21,7 +20,7 @@ const MessageForm = ({ activeChannelId }) => {
           await addMessage({
             body: values.body,
             channelId: activeChannelId,
-            username
+            username,
           }).unwrap()
           resetForm()
         } catch (error) {

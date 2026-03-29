@@ -24,25 +24,7 @@ export const messagesApi = createApi({
         body: data,
       }),
     }),
-    editMessage: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/messages/${id}`,
-        method: 'PATCH',
-        body: data,
-      }),
-    }),
-    removeMessage: builder.mutation({
-      query: (id) => ({
-        url: `/messages/${id}`,
-        method: 'DELETE',
-      }),
-    }),
   }),
 })
 
-export const {
-  useGetMessagesQuery,
-  useAddMessageMutation,
-  useEditMessageMutation,
-  useRemoveMessageMutation
-} = messagesApi
+export const { useGetMessagesQuery, useAddMessageMutation } = messagesApi
