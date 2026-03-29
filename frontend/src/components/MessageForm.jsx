@@ -25,6 +25,7 @@ const MessageForm = ({ activeChannelId }) => {
           }).unwrap()
           resetForm()
         } catch (error) {
+          console.error(error)
           toast.error(t('networkError'))
         }
       }}

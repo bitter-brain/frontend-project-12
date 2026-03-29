@@ -12,7 +12,7 @@ const AuthPage = () => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [signupUser, { error, isLoading }] = useSignupUserMutation()
+  const [signupUser] = useSignupUserMutation()
   const navigate = useNavigate()
   const [signupError, setSignupError] = useState(false)
 
@@ -63,7 +63,7 @@ const AuthPage = () => {
                   }
                 }}
               >
-                {({ isSubmitting, errors, touched, isValid }) => (
+                {({ isSubmitting, errors, touched }) => (
                   <Form autoComplete="off" className="col-12 col-md-6 mt-3 mt-md-0">
                     <h1 className="text-center mb-4">{t('signupPage.title')}</h1>
                     <div className="form-floating mb-3">
