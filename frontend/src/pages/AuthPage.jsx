@@ -122,7 +122,7 @@ const AuthPage = () => {
                     <button
                       type="submit"
                       className="w-100 mb-3 btn btn-outline-primary"
-                      disabled={isSubmitting || !isValid}
+                      disabled={isSubmitting}
                     >
                       {t('signupPage.submit')}
                     </button>
