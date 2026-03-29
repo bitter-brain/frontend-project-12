@@ -26,7 +26,9 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
             split
             variant={isActive ? 'secondary' : ''}
             className="rounded-0 flex-shrink-0"
-          />
+          >
+            Управление каналом
+          </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={openRemoveChannelModal}>
               {t('manageChannel.delete')}
