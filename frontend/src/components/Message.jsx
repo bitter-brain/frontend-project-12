@@ -1,3 +1,5 @@
+import leoProfanity from '../profanity'
+
 const Message = (props) => {
 
   const {
@@ -8,7 +10,7 @@ const Message = (props) => {
   return (
     <>
       <div className="text-break mb-2">
-        <b>{username}</b>{`: ${body}`}
+        <b>{username}</b>{`: ${leoProfanity.clean(body)}`}
       </div>
     </>
   )

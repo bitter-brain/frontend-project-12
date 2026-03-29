@@ -2,6 +2,7 @@ import { Dropdown, ButtonGroup, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../slices/modalSlice'
 import { useTranslation } from 'react-i18next'
+import leoProfanity from 'leo-profanity'
 
 const Channel = ({ id, name, removable, isActive, onClick }) => {
 
@@ -19,7 +20,7 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
             className="w-100 rounded-0 text-start overflow-hidden"
             onClick={() => onClick(id)}
           >
-            <span className="text-truncate d-inline-block w-100"># {name}</span>
+            <span className="text-truncate d-inline-block w-100"># {leoProfanity.clean(name)}</span>
           </Button>
           <Dropdown.Toggle
             split
@@ -46,7 +47,7 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
         className="w-100 rounded-0 text-start overflow-hidden"
         onClick={() => onClick(id)}
       >
-        <span className="text-truncate d-inline-block w-100"># {name}</span>
+        <span className="text-truncate d-inline-block w-100"># {leoProfanity.clean(name)}</span>
       </Button>
     </li>
   )
