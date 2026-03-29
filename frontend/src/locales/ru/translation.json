@@ -13,7 +13,7 @@
   "messageBtnText": "Отправить",
   "channel": {
     "added": "Канал создан",
-    "deleted": "Канал удален",
+    "deleted": "Канал удалён",
     "renamed": "Канал переименован"
   },
   "notFound": {
