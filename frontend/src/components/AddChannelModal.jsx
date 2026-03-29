@@ -52,6 +52,7 @@ const AddChannelModal = () => {
                 className="form-control mb-2"
                 autoFocus
               />
+              <label htmlFor="channelName" className="visually-hidden">{t('modals.channelName')}</label>
               {errors.channelName && (
                 <div className="text-danger">{errors.channelName}</div>
               )}
