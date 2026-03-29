@@ -12,7 +12,7 @@
   "messageInputPlaceholder": "Введите сообщение...",
   "messageBtnText": "Отправить",
   "channel": {
-    "added": "Канал добавлен",
+    "added": "Канал создан",
     "deleted": "Канал удален",
     "renamed": "Канал переименован"
   },
