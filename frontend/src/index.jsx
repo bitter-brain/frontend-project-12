@@ -8,7 +8,7 @@ const start = async () => {
   createRoot(document.getElementById('app')).render(
     <StrictMode>
       {app}
-    </StrictMode>
+    </StrictMode>,
   )
 }
 

@@ -20,7 +20,8 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
             onClick={() => onClick(id)}
           >
             <span className="text-truncate d-inline-block w-100">
-              # {leoProfanity.clean(name)}
+              #
+              {leoProfanity.clean(name)}
             </span>
           </Button>
           <Dropdown.Toggle
@@ -51,7 +52,8 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
         onClick={() => onClick(id)}
       >
         <span className="text-truncate d-inline-block w-100">
-          # {leoProfanity.clean(name)}
+          #
+          {leoProfanity.clean(name)}
         </span>
       </Button>
     </li>

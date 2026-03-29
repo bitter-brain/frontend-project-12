@@ -9,7 +9,6 @@ import * as Yup from 'yup'
 import { useTranslation } from 'react-i18next'
 
 const AuthPage = () => {
-
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [signupUser] = useSignupUserMutation()
@@ -47,8 +46,8 @@ const AuthPage = () => {
                 initialValues={{
                   username: '',
                   password: '',
-                  passwordConfirm: ''
-              }}
+                  passwordConfirm: '',
+                }}
                 validationSchema={signupSchema}
                 onSubmit={async (values) => {
                   setSignupError(false)
@@ -56,7 +55,8 @@ const AuthPage = () => {
                     const { token, username } = await signupUser({ username: values.username, password: values.password }).unwrap()
                     dispatch(loginSuccess({ token, username }))
                     navigate('/')
-                  } catch (error) {
+                  }
+                  catch (error) {
                     if (error.status === 409) {
                       setSignupError(true)
                     }

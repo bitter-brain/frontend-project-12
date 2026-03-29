@@ -10,7 +10,8 @@ const PageNotFound = () => {
       <img alt={t('notFound.title')} className="img-fluid h-25" src={notFoundImage} />
       <h1 className="h4 text-muted">{t('notFound.title')}</h1>
       <p className="text-muted">
-        {t('notFound.text')}{' '}
+        {t('notFound.text')}
+        {' '}
         <Link to="/">{t('notFound.link')}</Link>
       </p>
     </div>

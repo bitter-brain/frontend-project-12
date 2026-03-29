@@ -23,7 +23,8 @@ const MessageForm = ({ activeChannelId }) => {
             username,
           }).unwrap()
           resetForm()
-        } catch (error) {
+        }
+        catch (error) {
           console.error(error)
           toast.error(t('networkError'))
         }

@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 const NavbarChat = () => {
-
   const { t } = useTranslation()
   const isLogged = useSelector(state => state.auth.loggedIn)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const handleLogout = () => {
     dispatch(logout())
     navigate('/login')
@@ -21,11 +21,11 @@ const NavbarChat = () => {
     <Navbar expand="lg" className="shadow-sm light bg-white">
       <Container>
         <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
-        {isLogged &&
+        {isLogged && (
           <Button onClick={handleLogout} variant="primary">
             {t('logoutBtn')}
           </Button>
-        }
+        )}
       </Container>
     </Navbar>
   )

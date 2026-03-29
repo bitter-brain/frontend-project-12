@@ -12,5 +12,5 @@ const channelsSlice = createSlice({
   },
 })
 
-export const { setActiveChannel} = channelsSlice.actions
+export const { setActiveChannel } = channelsSlice.actions
 export default channelsSlice.reducer

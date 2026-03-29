@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 
 const RenameChannelModal = () => {
   const { t } = useTranslation()
-  const { type, channelId } = useSelector((state) => state.modal)
+  const { type, channelId } = useSelector(state => state.modal)
   const dispatch = useDispatch()
   const handleClose = () => dispatch(closeModal())
   const [renameChannel, { isLoading }] = useRenameChannelMutation()
@@ -36,7 +36,8 @@ const RenameChannelModal = () => {
               await renameChannel({ id: channelId, name: values.channelName }).unwrap()
               handleClose()
               toast.success(t('channel.renamed'))
-            } catch (error) {
+            }
+            catch (error) {
               toast.error(t('networkError'))
               console.error(error)
             }
@@ -61,7 +62,8 @@ const RenameChannelModal = () => {
                   onClick={() => {
                     resetForm()
                     handleClose()
-                  }}>
+                  }}
+                >
                   {t('modals.buttons.cancel')}
                 </Button>
                 <Button

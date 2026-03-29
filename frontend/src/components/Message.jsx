@@ -1,7 +1,6 @@
 import leoProfanity from '../profanity'
 
 const Message = (props) => {
-
   const {
     body,
     username,

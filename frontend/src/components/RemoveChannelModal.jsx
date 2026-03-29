@@ -9,8 +9,8 @@ import { toast } from 'react-toastify'
 
 const RemoveChannelModal = () => {
   const { t } = useTranslation()
-  const { type, channelId } = useSelector((state) => state.modal)
-  const activeChannelId = useSelector((state) => state.channels.activeChannel)
+  const { type, channelId } = useSelector(state => state.modal)
+  const activeChannelId = useSelector(state => state.channels.activeChannel)
   const { data: fetchedChannels } = useGetChannelsQuery()
   const dispatch = useDispatch()
   const [removeChannel, { isLoading }] = useRemoveChannelMutation()
@@ -24,7 +24,8 @@ const RemoveChannelModal = () => {
       }
       handleClose()
       toast.success(t('channel.deleted'))
-    } catch (error) {
+    }
+    catch (error) {
       toast.error(t('networkError'))
       console.error(error)
     }

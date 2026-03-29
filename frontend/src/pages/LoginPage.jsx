@@ -10,7 +10,6 @@ import { Card } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 
 const LoginPage = () => {
-
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [loginUser] = useLoginUserMutation()
@@ -41,7 +40,8 @@ const LoginPage = () => {
                     const { token, username } = await loginUser(values).unwrap()
                     dispatch(loginSuccess({ token, username }))
                     navigate('/')
-                  } catch (error) {
+                  }
+                  catch (error) {
                     if (error.status === 401) {
                       setAuthError(true)
                     }
@@ -99,7 +99,9 @@ const LoginPage = () => {
             </div>
             <Card.Footer className="p-4">
               <div className="text-center">
-                <span>{t('loginPage.noAccount')} </span>
+                <span>
+                  {t('loginPage.noAccount')}
+                </span>
                 <Link to="/signup">{t('loginPage.signup')}</Link>
               </div>
             </Card.Footer>

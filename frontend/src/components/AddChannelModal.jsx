@@ -10,9 +10,8 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
 const AddChannelModal = () => {
-
   const { t } = useTranslation()
-  const { type } = useSelector((state) => state.modal)
+  const { type } = useSelector(state => state.modal)
   const dispatch = useDispatch()
   const handleClose = () => dispatch(closeModal())
   const [addChannel, { isLoading }] = useAddChannelMutation()
@@ -39,7 +38,8 @@ const AddChannelModal = () => {
               dispatch(setActiveChannel(id))
               handleClose()
               toast.success(t('channel.added'))
-            } catch (error) {
+            }
+            catch (error) {
               toast.error(t('networkError'))
               console.error(error)
             }
@@ -71,7 +71,8 @@ const AddChannelModal = () => {
                 <Button
                   type="submit"
                   variant="primary"
-                  disabled={isSubmitting}>
+                  disabled={isSubmitting}
+                >
                   {isLoading ? t('modals.buttons.submitting') : t('modals.buttons.submit')}
                 </Button>
               </div>
