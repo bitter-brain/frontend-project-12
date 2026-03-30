@@ -29,7 +29,7 @@ const Channel = ({ id, name, removable, isActive, onClick }) => {
             variant={isActive ? 'secondary' : ''}
             className="rounded-0 flex-shrink-0"
           >
-            Управление каналом
+            <span className="visually-hidden">Управление каналом</span>
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={openRemoveChannelModal}>

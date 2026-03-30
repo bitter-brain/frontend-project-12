@@ -102,7 +102,7 @@ const LoginPage = () => {
                 <span>
                   {t('loginPage.noAccount')}
                 </span>
-                <Link to="/signup">{t('loginPage.signup')}</Link>
+                <Link to="/signup" className="ms-1">{t('loginPage.signup')}</Link>
               </div>
             </Card.Footer>
           </div>
