@@ -73,11 +73,12 @@ const ChannelModal = () => {
 
       {type === 'removeChannel'
         ? (
-          <>
+            <>
           <Modal.Body>
             <form onSubmit={async (e) => {
               e.preventDefault()
-              await handleSubmit() }}
+              await handleSubmit()
+              }}
             >
               <p>{t('modals.deleteQuestion')}</p>
               <div className="d-flex justify-content-end gap-2">
@@ -100,10 +101,10 @@ const ChannelModal = () => {
               </div>
             </form>
           </Modal.Body>
-        </>
+          </>
         )
-        : (
-          <Modal.Body>
+            : (
+              <Modal.Body>
           <Formik
             initialValues={{ channelName: '' }}
             validationSchema={channelValidationSchema(channels, t)}
