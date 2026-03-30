@@ -58,7 +58,9 @@ const ChannelModal = () => {
       }
 
       handleClose()
-    } catch (e) {
+    }
+    catch (error) {
+      console.error(error)
       toast.error(t('networkError'))
     }
   }
@@ -72,7 +74,7 @@ const ChannelModal = () => {
       {type === 'removeChannel' ? (
         <>
           <Modal.Body>
-            <form onSubmit={e => { e.preventDefault(); handleSubmit() }}>
+            <form onSubmit={async e => { e.preventDefault(); await handleSubmit() }}>
               <p>{t('modals.deleteQuestion')}</p>
               <div className="d-flex justify-content-end gap-2">
                 <Button
@@ -131,7 +133,7 @@ const ChannelModal = () => {
                     <Button
                       type="submit"
                       variant="primary"
-                      disabled={isSubmitting}>
+                      disabled={isSubmitting || isLoading}>
                       {isLoading ? '...' : t('modals.buttons.submit')}
                     </Button>
                   </div>

@@ -1,24 +1,13 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { baseApi } from './baseApi'
 
-export const channelsApi = createApi({
-  reducerPath: 'channelsApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: '/api/v1',
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('auth_token')
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`)
-      }
-      return headers
-    },
-  }),
-  endpoints: builder => ({
+export const channelsApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
     getChannels: builder.query({
       query: () => '/channels',
       providesTags: ['Channels'],
     }),
     addChannel: builder.mutation({
-      query: data => ({
+      query: (data) => ({
         url: '/channels',
         method: 'POST',
         body: data,
@@ -31,13 +20,14 @@ export const channelsApi = createApi({
         method: 'PATCH',
         body: data,
       }),
+      invalidatesTags: ['Channels'], // 🔥 ты забыл это
     }),
     removeChannel: builder.mutation({
-      query: id => ({
+      query: (id) => ({
         url: `/channels/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Messages'],
+      invalidatesTags: ['Channels', 'Messages'], // 🔥 фикс
     }),
   }),
 })

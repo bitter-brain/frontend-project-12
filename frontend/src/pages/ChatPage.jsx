@@ -33,13 +33,13 @@ const ChatPage = () => {
   }, [fetchedMessages])
 
   useEffect(() => {
-    socket.on('newMessage', payload => {
+    socket.on('newMessage', (payload) => {
       dispatch(addMessage(payload))
     })
 
     socket.on('newChannel', payload => {
       dispatch(
-        channelsApi.util.updateQueryData('getChannels', undefined, draft => {
+        channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
           draft.push(payload)
         }),
       )
@@ -47,14 +47,14 @@ const ChatPage = () => {
 
     socket.on('renameChannel', payload => {
       dispatch(
-        channelsApi.util.updateQueryData('getChannels', undefined, draft => {
+        channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
           const channel = draft.find(c => c.id === payload.id)
           if (channel) channel.name = payload.name
         }),
       )
     })
 
-    socket.on('removeChannel', payload => {
+    socket.on('removeChannel', (payload) => {
       dispatch(
         channelsApi.util.updateQueryData('getChannels', undefined, draft => draft.filter(c => c.id !== payload.id)),
       )
