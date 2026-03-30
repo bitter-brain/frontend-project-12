@@ -15,7 +15,7 @@ const store = configureStore({
 
     [baseApi.reducerPath]: baseApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(baseApi.middleware),
 })
 

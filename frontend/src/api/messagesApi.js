@@ -1,13 +1,13 @@
 import { baseApi } from './baseApi'
 
 export const messagesApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getMessages: builder.query({
       query: () => '/messages',
       providesTags: ['Messages'],
     }),
     addMessage: builder.mutation({
-      query: (data) => ({
+      query: data => ({
         url: '/messages',
         method: 'POST',
         body: data,

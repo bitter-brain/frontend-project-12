@@ -1,13 +1,13 @@
 import { baseApi } from './baseApi'
 
 export const channelsApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getChannels: builder.query({
       query: () => '/channels',
       providesTags: ['Channels'],
     }),
     addChannel: builder.mutation({
-      query: (data) => ({
+      query: data => ({
         url: '/channels',
         method: 'POST',
         body: data,
@@ -23,7 +23,7 @@ export const channelsApi = baseApi.injectEndpoints({
       invalidatesTags: ['Channels'], // 🔥 ты забыл это
     }),
     removeChannel: builder.mutation({
-      query: (id) => ({
+      query: id => ({
         url: `/channels/${id}`,
         method: 'DELETE',
       }),

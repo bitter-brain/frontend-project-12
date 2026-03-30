@@ -71,32 +71,39 @@ const ChannelModal = () => {
         <Modal.Title>{titles[type]}</Modal.Title>
       </Modal.Header>
 
-      {type === 'removeChannel' ? (
-        <>
+      {type === 'removeChannel'
+        ? (
+          <>
           <Modal.Body>
-            <form onSubmit={async e => { e.preventDefault(); await handleSubmit() }}>
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              await handleSubmit() }}
+            >
               <p>{t('modals.deleteQuestion')}</p>
               <div className="d-flex justify-content-end gap-2">
                 <Button
                   type="button"
                   variant="secondary"
-                  onClick={handleClose}>
+                  onClick={handleClose}
+                >
                   {t('modals.buttons.cancel')}
                 </Button>
                 <Button
                   type="submit"
                   variant="danger"
-                  disabled={isLoading}>
+                  disabled={isLoading}
+                >
                   {isLoading
-                    ? '...'
+                    ? t('modals.buttons.deleting')
                     : t('modals.buttons.delete')}
                 </Button>
               </div>
             </form>
           </Modal.Body>
         </>
-      ) : (
-        <Modal.Body>
+        )
+        : (
+          <Modal.Body>
           <Formik
             initialValues={{ channelName: '' }}
             validationSchema={channelValidationSchema(channels, t)}
@@ -133,8 +140,9 @@ const ChannelModal = () => {
                     <Button
                       type="submit"
                       variant="primary"
-                      disabled={isSubmitting || isLoading}>
-                      {isLoading ? '...' : t('modals.buttons.submit')}
+                      disabled={isSubmitting || isLoading}
+                    >
+                      {isLoading ? t('modals.buttons.submitting') : t('modals.buttons.submit')}
                     </Button>
                   </div>
                 </div>
@@ -142,7 +150,8 @@ const ChannelModal = () => {
             )}
           </Formik>
         </Modal.Body>
-      )}
+        )
+      }
     </Modal>
   )
 }

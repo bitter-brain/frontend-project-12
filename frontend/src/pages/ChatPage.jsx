@@ -37,7 +37,7 @@ const ChatPage = () => {
       dispatch(addMessage(payload))
     })
 
-    socket.on('newChannel', payload => {
+    socket.on('newChannel', (payload) => {
       dispatch(
         channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
           draft.push(payload)
@@ -45,7 +45,7 @@ const ChatPage = () => {
       )
     })
 
-    socket.on('renameChannel', payload => {
+    socket.on('renameChannel', (payload) => {
       dispatch(
         channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
           const channel = draft.find(c => c.id === payload.id)
