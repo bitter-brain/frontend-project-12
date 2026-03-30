@@ -20,14 +20,14 @@ export const channelsApi = baseApi.injectEndpoints({
         method: 'PATCH',
         body: data,
       }),
-      invalidatesTags: ['Channels'], // 🔥 ты забыл это
+      invalidatesTags: ['Channels'],
     }),
     removeChannel: builder.mutation({
       query: id => ({
         url: `/channels/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Channels', 'Messages'], // 🔥 фикс
+      invalidatesTags: ['Channels', 'Messages'],
     }),
   }),
 })
