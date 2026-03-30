@@ -4,15 +4,14 @@ import { useGetChannelsQuery, channelsApi } from '../api/channelsApi'
 import { useGetMessagesQuery } from '../api/messagesApi'
 import { setActiveChannel } from '../slices/channelsSlice'
 import { setMessages, addMessage } from '../slices/messagesSlice'
-import ChannelsList from '../components/ChannelsList'
-import MessagesPanel from '../components/MessagesPanel'
-import AddChannelModal from '../components/AddChannelModal'
-import socket from '../socket'
-import DeleteChannelModal from '../components/RemoveChannelModal'
-import RenameChannelModal from '../components/RenameChannelModal'
+import ChannelsList from '../components/channels/ChannelsList'
+import MessagesPanel from '../components/messages/MessagesPanel'
+import socket from '../utils/socket'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import SpinnerLoading from '../components/SpinnerLoading'
+import ChannelModal from '../components/ChannelModal'
+
 const ChatPage = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -34,44 +33,39 @@ const ChatPage = () => {
   }, [fetchedMessages])
 
   useEffect(() => {
-    socket.on('newMessage', (payload) => {
+    socket.on('newMessage', payload => {
       dispatch(addMessage(payload))
     })
-    return () => socket.off('newMessage')
-  }, [])
 
-  useEffect(() => {
-    socket.on('newChannel', (payload) => {
+    socket.on('newChannel', payload => {
       dispatch(
-        channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
+        channelsApi.util.updateQueryData('getChannels', undefined, draft => {
           draft.push(payload)
         }),
       )
     })
-    return () => socket.off('newChannel')
-  }, [])
 
-  useEffect(() => {
-    socket.on('renameChannel', (payload) => {
+    socket.on('renameChannel', payload => {
       dispatch(
-        channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
+        channelsApi.util.updateQueryData('getChannels', undefined, draft => {
           const channel = draft.find(c => c.id === payload.id)
           if (channel) channel.name = payload.name
         }),
       )
     })
-    return () => socket.off('renameChannel')
-  }, [])
 
-  useEffect(() => {
-    socket.on('removeChannel', (payload) => {
+    socket.on('removeChannel', payload => {
       dispatch(
-        channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
-          return draft.filter(c => c.id !== payload.id)
-        }),
+        channelsApi.util.updateQueryData('getChannels', undefined, draft => draft.filter(c => c.id !== payload.id)),
       )
     })
-    return () => socket.off('removeChannel')
+
+    return () => {
+      socket.off('newMessage')
+      socket.off('newChannel')
+      socket.off('renameChannel')
+      socket.off('removeChannel')
+    }
   }, [])
 
   useEffect(() => {
@@ -81,7 +75,6 @@ const ChatPage = () => {
   }, [error, errorMessages])
 
   if (isLoading || isLoadingMessages) return <SpinnerLoading />
-
   if (error || errorMessages) return null
 
   const activeChannel = fetchedChannels?.find(channel => channel.id === activeChannelId) ?? fetchedChannels?.[0]
@@ -99,9 +92,7 @@ const ChatPage = () => {
           messages={messages}
           activeChannelId={activeChannelId}
         />
-        <AddChannelModal />
-        <DeleteChannelModal activeChannelId={activeChannelId} />
-        <RenameChannelModal />
+        <ChannelModal />
       </div>
     </div>
   )

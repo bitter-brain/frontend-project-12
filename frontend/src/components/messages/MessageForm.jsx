@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik'
 import { useState } from 'react'
-import { useAddMessageMutation } from '../api/messagesApi'
+import { useAddMessageMutation } from '../../api/messagesApi'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'

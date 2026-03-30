@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import LoginPage from './pages/LoginPage'
-import ChatPage from './pages/ChatPage'
-import PageNotFound from './pages/PageNotFound'
-import PrivateRoute from './components/PrivateRoute'
-import PublicRoute from './components/PublicRoute'
-import AuthPage from './pages/AuthPage'
-import NavbarChat from './components/NavbarChat'
+import LoginPage from '../pages/LoginPage'
+import ChatPage from '../pages/ChatPage'
+import PageNotFound from '../pages/PageNotFound'
+import PrivateRoute from '../routes/PrivateRoute'
+import PublicRoute from '../routes/PublicRoute'
+import AuthPage from '../pages/AuthPage'
+import NavbarChat from './NavbarChat'
 import { ToastContainer } from 'react-toastify'
 
 function App() {

@@ -1,6 +1,6 @@
 import { Dropdown, ButtonGroup, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { openModal } from '../slices/modalSlice'
+import { openModal } from '../../slices/modalSlice'
 import { useTranslation } from 'react-i18next'
 import leoProfanity from 'leo-profanity'
 

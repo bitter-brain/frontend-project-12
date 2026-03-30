@@ -1,4 +1,4 @@
-import leoProfanity from '../profanity'
+import leoProfanity from '../../utils/profanity'
 
 const Message = (props) => {
   const {

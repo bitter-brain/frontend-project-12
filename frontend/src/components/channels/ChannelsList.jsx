@@ -1,5 +1,5 @@
 import Channel from './Channel'
-import { openModal } from '../slices/modalSlice'
+import { openModal } from '../../slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
