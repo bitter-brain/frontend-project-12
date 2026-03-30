@@ -75,82 +75,82 @@ const ChannelModal = () => {
         ? (
             <>
               <Modal.Body>
-            <form onSubmit={async (e) => {
-              e.preventDefault()
-              await handleSubmit()
-              }}
-            >
-              <p>{t('modals.deleteQuestion')}</p>
-              <div className="d-flex justify-content-end gap-2">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={handleClose}
+                <form onSubmit={async (e) => {
+                  e.preventDefault()
+                  await handleSubmit()
+                  }}
                 >
-                  {t('modals.buttons.cancel')}
-                </Button>
-                <Button
-                  type="submit"
-                  variant="danger"
-                  disabled={isLoading}
-                >
-                  {isLoading
-                    ? t('modals.buttons.deleting')
-                    : t('modals.buttons.delete')}
-                </Button>
-              </div>
-            </form>
-          </Modal.Body>
-            </>
-          )
-        : (
-            <Modal.Body>
-          <Formik
-            initialValues={{ channelName: '' }}
-            validationSchema={channelValidationSchema(channels, t)}
-            validateOnBlur={false}
-            validateOnChange={false}
-            onSubmit={handleSubmit}
-          >
-            {({ errors, isSubmitting, resetForm }) => (
-              <Form>
-                <div>
-                  <Field
-                    id="channelName"
-                    name="channelName"
-                    className="mb-2 form-control"
-                    autoFocus
-                  />
-                  <label htmlFor="channelName" className="visually-hidden">
-                    {t('modals.channelName')}
-                  </label>
-                  {errors.channelName && (
-                    <div className="invalid-feedback d-block">{errors.channelName}</div>
-                  )}
-                  <div className="d-flex justify-content-end gap-2 mt-3">
+                  <p>{t('modals.deleteQuestion')}</p>
+                  <div className="d-flex justify-content-end gap-2">
                     <Button
                       type="button"
                       variant="secondary"
-                      onClick={() => {
-                        resetForm()
-                        handleClose()
-                      }}
+                      onClick={handleClose}
                     >
                       {t('modals.buttons.cancel')}
                     </Button>
                     <Button
                       type="submit"
-                      variant="primary"
-                      disabled={isSubmitting || isLoading}
+                      variant="danger"
+                      disabled={isLoading}
                     >
-                      {isLoading ? t('modals.buttons.submitting') : t('modals.buttons.submit')}
+                      {isLoading
+                        ? t('modals.buttons.deleting')
+                        : t('modals.buttons.delete')}
                     </Button>
                   </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </Modal.Body>
+                </form>
+              </Modal.Body>
+            </>
+          )
+        : (
+            <Modal.Body>
+              <Formik
+                initialValues={{ channelName: '' }}
+                validationSchema={channelValidationSchema(channels, t)}
+                validateOnBlur={false}
+                validateOnChange={false}
+                onSubmit={handleSubmit}
+              >
+                {({ errors, isSubmitting, resetForm }) => (
+                  <Form>
+                    <div>
+                      <Field
+                        id="channelName"
+                        name="channelName"
+                        className="mb-2 form-control"
+                        autoFocus
+                      />
+                      <label htmlFor="channelName" className="visually-hidden">
+                        {t('modals.channelName')}
+                      </label>
+                      {errors.channelName && (
+                        <div className="invalid-feedback d-block">{errors.channelName}</div>
+                      )}
+                      <div className="d-flex justify-content-end gap-2 mt-3">
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          onClick={() => {
+                            resetForm()
+                            handleClose()
+                          }}
+                        >
+                          {t('modals.buttons.cancel')}
+                        </Button>
+                        <Button
+                          type="submit"
+                          variant="primary"
+                          disabled={isSubmitting || isLoading}
+                        >
+                          {isLoading ? t('modals.buttons.submitting') : t('modals.buttons.submit')}
+                        </Button>
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </Modal.Body>
           )}
     </Modal>
   )
