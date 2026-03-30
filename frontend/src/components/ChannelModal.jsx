@@ -78,7 +78,7 @@ const ChannelModal = () => {
                 <form onSubmit={async (e) => {
                   e.preventDefault()
                   await handleSubmit()
-                  }}
+                }}
                 >
                   <p>{t('modals.deleteQuestion')}</p>
                   <div className="d-flex justify-content-end gap-2">
