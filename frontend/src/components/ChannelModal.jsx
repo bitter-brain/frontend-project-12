@@ -74,7 +74,7 @@ const ChannelModal = () => {
       {type === 'removeChannel'
         ? (
             <>
-          <Modal.Body>
+              <Modal.Body>
             <form onSubmit={async (e) => {
               e.preventDefault()
               await handleSubmit()
@@ -101,10 +101,10 @@ const ChannelModal = () => {
               </div>
             </form>
           </Modal.Body>
-          </>
-        )
-            : (
-              <Modal.Body>
+            </>
+          )
+        : (
+            <Modal.Body>
           <Formik
             initialValues={{ channelName: '' }}
             validationSchema={channelValidationSchema(channels, t)}
@@ -151,8 +151,7 @@ const ChannelModal = () => {
             )}
           </Formik>
         </Modal.Body>
-        )
-      }
+          )}
     </Modal>
   )
 }
