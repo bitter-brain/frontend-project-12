@@ -36,6 +36,7 @@ Fullstack real-time chat application, inspired by Slack.
 -  User-friendly interface with focus management and button disabling during requests
 -  Modal windows for channel management with form validation (Formik + Yup)
 -  Toast notifications for all user actions
+-  Unit tests for UI components (Vitest, React Testing Library)
 -  Fully compatible with Playwright tests and ESLint rules
 
 ---
