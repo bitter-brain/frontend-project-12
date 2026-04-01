@@ -10,12 +10,16 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:5001',
       },
-      // Проксируем WebSocket соединения
       '/socket.io': {
         target: 'ws://localhost:5001',
         ws: true,
         rewriteWsOrigin: true,
       },
     },
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+    globals: true,
   },
 })
